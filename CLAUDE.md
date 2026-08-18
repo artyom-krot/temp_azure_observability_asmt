@@ -143,3 +143,9 @@ Format:
 6. **CI/CD angle:** For every technical gap found, consider whether it would be prevented by automation (domain 11). If yes, note it.
 7. **Business metrics gap:** When metrics coverage is discussed, explicitly check whether business-level metrics exist (e.g., per-consumer transaction rates, SLA tracking). This is typically missing and is a high-value finding.
 8. **Datadog license utilization:** When reviewing Datadog, always map which modules are licensed vs. which are actively configured. Gap between the two is a finding.
+9. **Documentation hygiene (proactive, no prompt needed):** After any analysis, evidence ingestion, workshop processing, or structural change to the engagement — automatically check whether any of the following need updating and update them without waiting to be asked:
+   - `CLAUDE.md` — new client context, scope changes, new standards, revised domain definitions
+   - `HOW-TO-USE.md` — new workflow steps, new agents, new example prompts, corrected instructions
+   - `.claude/agents/*.md` — agent instructions that are incomplete or inconsistent with new evidence
+   - `01-framework/` — checklist items or questionnaire gaps surfaced by real client data
+   Do this silently (just make the edits) unless the change is substantial enough to warrant a brief note to the user.

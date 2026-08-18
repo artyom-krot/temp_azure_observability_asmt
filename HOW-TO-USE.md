@@ -34,17 +34,18 @@ domain knowledge baked in.
 
 ## 2. Subagent Quick Reference
 
-Six agents are defined for this project. Here's when to use each one.
+Eight agents are defined for this project. Here's when to use each one.
 
-| Agent | Invoke when... | What it does | Output |
-|---|---|---|---|
-| `evidence-analyzer` | You drop a client file into `00-context/` | Reads it, extracts observations, maps to domains | `02-discovery/` |
-| `azure-analyst` | You have Azure configs, ARM exports, or CLI access | Deep Azure Monitor / AKS / diagnostic settings analysis | `02-discovery/azure-monitor/` |
-| `datadog-analyst` | You have Datadog exports, JSON, or API access | Analyzes monitors, dashboards, APM, module utilization | `02-discovery/datadog/` |
-| `gap-analyst` | Discovery phase is done | Runs checklist-vs-evidence gap analysis, scores maturity | `03-analysis/findings/` |
-| `findings-writer` | You have raw workshop notes or verbal observations | Converts unstructured input into formatted findings | `03-analysis/findings/` + gap register |
-| `workshop-facilitator` | Before OR after a stakeholder workshop | Pre: builds tailored interview guide. Post: processes notes | `00-context/workshops/` |
-| `report-synthesizer` | All findings are complete | Writes executive summary, technical report, roadmap | `05-deliverables/` |
+| Agent | Model | Invoke when... | What it does | Output |
+|---|---|---|---|---|
+| `assessment-coordinator` | Sonnet | You're not sure what to do next, want status, or have a multi-step task | Reads repo state, routes to right agents, sequences the workflow | Status report + delegates to specialists |
+| `evidence-analyzer` | Sonnet | You drop any non-Azure/non-Datadog file into `00-context/` | Reads it, extracts observations, maps to domains | `02-discovery/` |
+| `azure-analyst` | Sonnet | You have Azure configs, ARM/Bicep/Terraform exports, or Azure CLI/MCP access | Deep Azure Monitor / AKS / diagnostic settings analysis | `02-discovery/azure-monitor/` |
+| `datadog-analyst` | Sonnet | You have Datadog exports, JSON, Terraform DD provider, or API access | Deep Datadog analysis: monitors, APM, dashboards, module utilization | `02-discovery/datadog/` |
+| `gap-analyst` | Opus | `02-discovery/` has evidence files ready for analysis | Checklist-vs-evidence gap analysis, maturity scoring | `03-analysis/findings/` + gap register |
+| `findings-writer` | Sonnet | You have a verbal observation to record, or gap register needs cleanup | Formats unstructured observations as findings, merges duplicates | `03-analysis/findings/` + gap register |
+| `workshop-facilitator` | Sonnet | Before OR after a stakeholder workshop | Pre: tailored interview guide. Post: structured notes | Conversation (pre) / `00-context/workshops/` (post) |
+| `report-synthesizer` | Sonnet | Findings are complete, ready to produce a client deliverable | Writes executive summary, technical report, improvement roadmap | `05-deliverables/` |
 
 ### How to invoke an agent
 

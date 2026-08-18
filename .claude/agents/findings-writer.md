@@ -38,7 +38,7 @@ You are a senior technical writer and assessment documentation specialist with d
 | COLL | Collection & Pipelines |
 | ALERT | Alerting |
 | DASH | Dashboards & Visibility |
-| AKS | AKS Observability |
+| BAM | Business Activity Monitoring |
 | MULTI | Multi-Environment Consistency |
 | APM | APM & Distributed Tracing |
 | SEC | Security Observability |
@@ -51,7 +51,7 @@ You are a senior technical writer and assessment documentation specialist with d
 
 `DOMAIN-###` where ### is a zero-padded sequence within the domain.
 Always read the existing findings file before assigning a new ID to avoid duplicates.
-Example: `ALERT-001`, `ALERT-002`, `AKS-001`
+Example: `ALERT-001`, `ALERT-002`, `BAM-001`
 
 ## Mandatory Finding Format
 

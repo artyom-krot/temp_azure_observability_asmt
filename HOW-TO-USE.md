@@ -168,7 +168,7 @@ for any of the ASB-related alerts. They get paged and figure it out each time."
 ### Running gap analysis
 ```
 "Run the full gap analysis on everything collected so far.
-Start with ALERT and AKS domains — those are the most critical."
+Start with ALERT and BAM domains — those are the most critical."
 ```
 
 ### Checking progress
@@ -268,7 +268,7 @@ when that access is available.
 | 2 | COLL | Collection & Pipelines — do signals reach the monitoring platform? |
 | 3 | ALERT | Alerting — do the right people get paged for the right reasons? |
 | 4 | DASH | Dashboards & Visibility — can teams see what matters? |
-| 5 | AKS | AKS Observability — is Kubernetes monitored properly? |
+| 5 | BAM | Business Activity Monitoring — are consumer KPIs, SLA compliance, and business metrics instrumented and visible? |
 | 6 | MULTI | Multi-Env Consistency — are all 12 environments covered equally? |
 | 7 | APM | APM & Distributed Tracing — can you trace a request end-to-end? |
 | 8 | SEC | Security Observability — are security events detected? |

@@ -1,6 +1,6 @@
 ---
 name: report-synthesizer
-description: Use this agent to compile assessment findings into final client deliverable documents. Invoke after gap analysis is complete and 03-analysis/findings/ and gap-register.md are populated with meaningful findings. Can also generate a specific section on demand. Trigger phrases: "write the executive summary", "write the technical report", "write the alerting section of the report", "generate the improvement roadmap", "compile the deliverables", "finalize the report". Precondition: 03-analysis/findings/ must contain at least partial findings before invoking — the report is only as good as the evidence behind it. Do NOT invoke for: gap analysis (use gap-analyst), formatting individual findings (use findings-writer), or evidence extraction (use evidence-analyzer). This is the final-mile agent — it reads finished findings and produces polished, audience-appropriate documents. Output: 05-deliverables/executive-summary.md, 05-deliverables/technical-report.md, 04-recommendations/roadmap.md.
+description: Use this agent to compile assessment findings into final client deliverable documents. Invoke after gap analysis is complete and 03-analysis/findings/ and gap-register.md are populated with meaningful findings. Can also generate a specific section on demand. Trigger phrases: "write the executive summary", "write the technical report", "write the alerting section of the report", "generate the improvement roadmap", "write the target architecture", "compile the deliverables", "finalize the report". Precondition: 03-analysis/findings/ must contain at least partial findings before invoking — the report is only as good as the evidence behind it. Do NOT invoke for: gap analysis (use gap-analyst), formatting individual findings (use findings-writer), or evidence extraction (use evidence-analyzer). This is the final-mile agent — it reads finished findings and produces polished, audience-appropriate documents. Output: 05-deliverables/technical-report.md, 05-deliverables/target-architecture.md, 05-deliverables/executive-summary.md, 05-deliverables/governance-guidelines.md, 04-recommendations/roadmap.md.
 model: sonnet
 tools:
   - Read
@@ -81,7 +81,77 @@ Before writing any deliverable:
 [High-level effort table — Low/Medium/High per priority bucket, not person-hours]
 ```
 
-### 2. Technical Report (`05-deliverables/technical-report.md`)
+### 2. Target Observability Architecture (`05-deliverables/target-architecture.md`)
+
+**Audience:** Engineering teams, platform architects, technical leadership.
+**Purpose:** This is the primary strategic deliverable — not a gap list but a vision. It answers: "What should observability look like for this platform, and how do we get there?"
+**Tone:** Prescriptive and forward-looking. Use "should", "must", "the target state is." Reference the current state only to illustrate the gap from the target.
+
+```markdown
+# Target Observability Architecture
+
+## 1. Vision Statement
+[2–3 sentences: what observability should do for this platform when fully realised]
+[Anchor to the client's stated drivers: reliability, stability, performance, proactive detection]
+
+## 2. Guiding Principles
+[5–7 principles the team can use to make future decisions]
+[Examples: "Instrument once, reuse everywhere", "Alert on symptoms not causes",
+ "Every service must have an SLO", "Observability config is code"]
+
+## 3. Current State Summary
+[Brief: what exists today, key gaps, maturity scores]
+[Not detailed — that's the technical report. 1 paragraph per domain max.]
+
+## 4. Target Architecture by Layer
+
+### Application Instrumentation (INSTR)
+[What all services must emit: metrics, structured logs with trace IDs, traces]
+[OTel or dd-java-agent standard; UST tag requirements]
+
+### Collection and Pipelines (COLL)
+[Log pipeline architecture: sources → agents → Datadog indexes + archive]
+[Retention targets: 90 days online, 1 year archive]
+[Azure Monitor role alongside Datadog]
+
+### Alerting Architecture (ALERT)
+[SLO-based alerting model; symptom-based vs. cause-based distinction]
+[Alert quality standards: runbook required, notification routing required, P1–P3 tags]
+[On-call integration: PagerDuty/OpsGenie routing model]
+
+### SLA/SLO Framework (INSTR + OPS)
+[How SLOs are defined, instrumented, monitored, and reported]
+[Error budget model; burn-rate alerting]
+[Business observability: consumer-level metrics and SLA tracking]
+
+### APM and Distributed Tracing (APM)
+[Service map completeness requirement; trace propagation standard]
+[Sampling strategy; Error Tracking workflow]
+[Database monitoring requirements]
+
+### Dashboards and Visibility (DASH)
+[Dashboard tiers: operational (on-call), service (engineering), executive (leadership)]
+[Ownership model; review cadence; template standards]
+
+### Governance Model (GOV)
+[RBAC model for single Datadog tenant]
+[Tag taxonomy: env, service, version, consumer, team — mandatory]
+[Monitor ownership policy; review and retirement process]
+
+### Operational Practices (OPS)
+[On-call workflow: alert → runbook → escalation → postmortem]
+[Runbook standards: every Tier 1 alert requires a runbook]
+[Incident review cadence; SLO review cadence]
+
+## 5. Gap-to-Target Mapping
+[Table: Domain | Current maturity | Target maturity | Key actions to close gap]
+
+## 6. Migration Path
+[Phased approach: quick wins → foundation → proactive → scale]
+[What changes in Phase 2 (out of scope but must be acknowledged)]
+```
+
+### 3. Technical Report (`05-deliverables/technical-report.md`)
 
 **Audience:** Engineering teams, platform architects, team leads.
 **Length:** As long as needed — completeness matters. Every finding must appear.

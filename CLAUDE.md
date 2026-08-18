@@ -13,11 +13,15 @@ align with the scope, standards, and format defined here.
 - **Consumers:** Global enterprise clients across US, UK, AU, DE (WIP), CA (planned)
 - **Teams:** Multiple product teams sharing a single platform, each owning specific services or integrations
 - **Core problem:** Observability is **reactive** — consumers detect failures before monitoring does
+- **Confirmed incident:** Recent database crash caused a consumer-facing outage — evidence of reactive detection posture
+- **Monitoring history:** Migrated from Splunk to Datadog ~2 years ago
 
 ### Infrastructure Landscape
 
 | Resource | Role |
 |---|---|
+| CDN | Edge layer (provider TBC — Azure CDN / Cloudflare) |
+| Apache | Web/reverse proxy tier |
 | Azure VMs | Legacy application components (migration in progress) |
 | Azure Kubernetes Service (AKS) | Modernized microservices, namespace-based env isolation |
 | Azure Service Bus (ASB) | Regional async messaging between services |
@@ -26,45 +30,90 @@ align with the scope, standards, and format defined here.
 | Azure SQL Database | Managed relational DB with HA |
 | Azure Key Vault | Secrets and certificate management |
 | Azure Monitor + Log Analytics | Platform-level observability |
-| Datadog | Primary monitoring platform |
+| Datadog | **Primary monitoring platform — single tenant for ALL consumer environments** |
+
+### Datadog Tenancy Model — Critical Context
+**Single Datadog tenant** is used for all consumer environments (not per-consumer tenants).
+Tag-based isolation (`env`, `consumer`, `service`) is the only separation mechanism.
+This makes tag governance, RBAC, and UST compliance critical architectural concerns.
 
 ### Scale
 - **12 production environments** (primary + DR per region)
 - **Regions active:** US, UK, AU — DE in progress, CA planned
 
+### Engagement Team
+- **2 specialists** on this assessment. Scope must be focused accordingly — not all 12 domains can receive equal depth in 4 weeks.
+- **Specialist A (Lead Engineer):** Responsible for application infrastructure landscape, application performance monitoring, log collection, and technical capabilities. Brings hands-on expertise to assess instrumentation, log pipelines, and APM agent coverage firsthand.
+- **Specialist B (Systems Architect):** Responsible for governance model, operational strategy, observability coverage, recurring issues, and assessment approach. Owns the alerting architecture, governance model, operational process design, and structural layers of the target architecture. Note: AKS infrastructure monitoring evidence is gathered by azure-analyst and feeds COLL findings.
+
 ---
 
 ## Engagement Scope
 
-This is a **full observability architectural assessment** covering both technical and operational layers,
-followed by an improvement plan and implementation.
+**Team:** 2 specialists. **Timeline:** 4 weeks.
 
-**Timeline:** 3–4 weeks  
-**Deliverables:**
-1. Living document in this repo (updated throughout)
-2. Technical assessment report (`05-deliverables/technical-report.md`)
-3. Executive summary / presentation (`05-deliverables/executive-summary.md`)
+### Ultimate Outcome
+The primary deliverable is a **target observability architecture** — not just a list of gaps.
+The output must answer: "Here is what good observability looks like for your platform, here is how far you are today, and here is the prioritised path to get there." The architecture must account for standardised instrumentation, governance, and operational practices that scale as the platform continues its cloud-native transition.
+
+### In-Scope Areas (Weeks 1–4)
+
+| Focus area | Primary domains |
+|---|---|
+| Application & infrastructure landscape — actual scope identification | INSTR, COLL, APM |
+| Observability coverage state — what is and isn't monitored | INSTR, COLL, ALERT, APM |
+| Alerting & detection gaps for Critical/High impact — recurring issues, detection approach | ALERT, APM |
+| SLA/SLO requirements and how to achieve them — technical observability | INSTR, ALERT, OPS |
+| Visibility and dashboards | DASH |
+| General operations strategy | OPS |
+| Existing governance model | GOV |
+| General observability gaps and blind spots | All in-scope domains |
+| Security and compliance (high-level) | SEC |
+
+### Out of Scope — Deferred to Phase 2
+
+These are acknowledged as important but not covered in this engagement. They should feed directly into Phase 2 planning.
+
+| Deferred topic | Domain |
+|---|---|
+| Datadog capability utilisation optimisation | `DD` |
+| Monitoring-as-code / CI/CD automation | `AUTO` |
+| Unified monitoring architecture design | `MULTI` |
+| Standardise observability: guardrails, ownership, unified toolset | `GOV` (standardise) |
+| Apply at scale / Migration strategy unified observability | N/A |
+| Multi-region coverage | `MULTI` |
+| Business activity monitoring — consumer KPIs, SLA compliance, business metrics | `BAM` |
+
+### Deliverables
+
+| # | Deliverable | Path |
+|---|---|---|
+| 1 | Technical assessment report (gaps + current state) | `05-deliverables/technical-report.md` |
+| 2 | Target observability architecture | `05-deliverables/target-architecture.md` |
+| 3 | Executive summary | `05-deliverables/executive-summary.md` |
+| 4 | Improvement roadmap with quick wins | `04-recommendations/roadmap.md` |
+| 5 | Governance guidelines (principles to leave with the team) | `05-deliverables/governance-guidelines.md` |
 
 ---
 
 ## Assessment Domains
 
-Every finding, analysis, and recommendation must reference one of these 12 domains:
+All findings reference one of the 12 standard domains. Scope column indicates depth for this engagement.
 
-| # | Domain | Short code |
-|---|--------|-----------|
-| 1 | Instrumentation | `INSTR` |
-| 2 | Collection & Pipelines | `COLL` |
-| 3 | Alerting | `ALERT` |
-| 4 | Dashboards & Visibility | `DASH` |
-| 5 | AKS Observability | `AKS` |
-| 6 | Multi-Environment Consistency | `MULTI` |
-| 7 | APM & Distributed Tracing | `APM` |
-| 8 | Security Observability | `SEC` |
-| 9 | Operational Processes | `OPS` |
-| 10 | Governance | `GOV` |
-| 11 | Observability Automation & CI/CD | `AUTO` |
-| 12 | Datadog Platform Utilization | `DD` |
+| # | Domain | Code | Scope |
+|---|--------|------|-------|
+| 1 | Instrumentation | `INSTR` | **Full** |
+| 2 | Collection & Pipelines | `COLL` | **Full** |
+| 3 | Alerting | `ALERT` | **Full** |
+| 4 | Dashboards & Visibility | `DASH` | **Full** |
+| 5 | Business Activity Monitoring (BAM). Is the application producing the correct business outcomes? | `BAM` | Lightweight |
+| 6 | Multi-Environment Consistency | `MULTI` | Lightweight |
+| 7 | APM (Application Performance Monitoring) & Distributed Tracing | `APM` | **Full** |
+| 8 | Security Observability | `SEC` | High-level only |
+| 9 | Operational Processes | `OPS` | **Full** |
+| 10 | Governance | `GOV` | **Full** (current state; not standardisation) |
+| 11 | Observability Automation & CI/CD | `AUTO` | **Out of scope** |
+| 12 | Datadog Platform Utilization | `DD` | **Out of scope** |
 
 ---
 

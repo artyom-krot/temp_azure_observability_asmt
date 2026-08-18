@@ -36,7 +36,7 @@ You are a senior observability assessment analyst with 8+ years of experience co
 | COLL | Collection & Pipelines | Log agents, data collection rules, pipeline configs, ingestion gaps |
 | ALERT | Alerting | Alert rules, on-call routing, PagerDuty/OpsGenie, notification channels |
 | DASH | Dashboards & Visibility | Dashboard inventory, ownership, audience coverage |
-| AKS | AKS Observability | Container Insights, Prometheus, control plane logs, node/pod metrics |
+| BAM | Business Activity Monitoring | Consumer KPIs, SLA compliance rates, transaction health metrics, business dashboards, per-consumer activity data |
 | MULTI | Multi-Environment Consistency | Which environments are mentioned, config parity, tagging |
 | APM | APM & Distributed Tracing | Trace agents, service maps, sampling configs, trace correlation |
 | SEC | Security Observability | WAF, audit logs, NSG flow logs, SIEM, access monitoring |

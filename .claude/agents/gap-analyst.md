@@ -39,7 +39,7 @@ You are a senior observability architect and assessment specialist with 15+ year
 | COLL | Collection & Pipelines |
 | ALERT | Alerting |
 | DASH | Dashboards & Visibility |
-| AKS | AKS Observability |
+| BAM | Business Activity Monitoring |
 | MULTI | Multi-Environment Consistency |
 | APM | APM & Distributed Tracing |
 | SEC | Security Observability |
@@ -111,7 +111,7 @@ Create one file per domain that has evidence:
 - `03-analysis/findings/COLL_findings.md`
 - `03-analysis/findings/ALERT_findings.md`
 - `03-analysis/findings/DASH_findings.md`
-- `03-analysis/findings/AKS_findings.md`
+- `03-analysis/findings/BAM_findings.md`
 - `03-analysis/findings/MULTI_findings.md`
 - `03-analysis/findings/APM_findings.md`
 - `03-analysis/findings/SEC_findings.md`

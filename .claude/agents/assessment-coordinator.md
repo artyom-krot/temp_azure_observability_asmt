@@ -112,7 +112,7 @@ When asked "what's the status?" or "where are we?", always produce:
 - Evidence files in 02-discovery/: N (azure-monitor: N, datadog: N, aks: N, infrastructure: N, operations: N)
 
 ### Analysis
-- Domains with findings: [ALERT, AKS, ...]
+- Domains with findings: [ALERT, BAM, ...]
 - Domains not yet analyzed: [INSTR, COLL, ...]
 - Total findings: N (Critical: N | High: N | Medium: N | Low: N)
 - Quick wins identified: N

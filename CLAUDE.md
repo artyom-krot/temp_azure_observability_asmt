@@ -56,19 +56,18 @@ This makes tag governance, RBAC, and UST compliance critical architectural conce
 The primary deliverable is a **target observability architecture** — not just a list of gaps.
 The output must answer: "Here is what good observability looks like for your platform, here is how far you are today, and here is the prioritised path to get there." The architecture must account for standardised instrumentation, governance, and operational practices that scale as the platform continues its cloud-native transition.
 
-### In-Scope Areas (Weeks 1–4)
+### In-Scope Activities (Weeks 1–4)
 
-| Focus area | Primary domains |
-|---|---|
-| Application & infrastructure landscape — actual scope identification | INSTR, COLL, APM |
-| Observability coverage state — what is and isn't monitored | INSTR, COLL, ALERT, APM |
-| Alerting & detection gaps for Critical/High impact — recurring issues, detection approach | ALERT, APM |
-| SLA/SLO requirements and how to achieve them — technical observability | INSTR, ALERT, OPS |
-| Visibility and dashboards | DASH |
-| General operations strategy | OPS |
-| Existing governance model | GOV |
-| General observability gaps and blind spots | All in-scope domains |
-| Security and compliance (high-level) | SEC |
+| # | Activity | Primary domains |
+|---|---|---|
+| 1 | **Application & Infrastructure Landscape Review** — identify all in-scope tiers, services, and components | INSTR, COLL, APM |
+| 2 | **Observability Coverage Evaluation** — log pipelines, metric emission, tracing across all tiers; identify dark tiers and instrumentation blind spots | INSTR, COLL, APM |
+| 3 | **Alerting & Detection Gap Analysis** — alert inventory coverage vs. Critical/High failure modes; alert quality; recurring incidents; gaps where consumers detect before monitoring does | ALERT, APM |
+| 4 | **APM Review** — evaluate whether current APM depth supports effective root cause analysis | APM |
+| 5 | **SLA/SLO Observability Review** — map contractual SLA commitments to existing SLO monitors; identify gaps where SLA obligations lack automated observability signals | INSTR, ALERT, OPS |
+| 6 | **Dashboard & Visibility Assessment** — inventory and evaluate dashboards against audience needs (engineering, operations, leadership) | DASH |
+| 7 | **Operational Processes Review** — assess end-to-end incident detection and response: alert routing, on-call tooling, runbook quality, escalation paths; evaluate MTTD/MTTR posture | OPS |
+| 8 | **Governance Model Review** — assess current-state governance maturity across tagging, ownership, access control, and standards adoption | GOV |
 
 ### Out of Scope — Deferred to Phase 2
 

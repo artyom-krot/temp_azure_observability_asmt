@@ -21,11 +21,10 @@ The architecture must address standardised instrumentation, governance, and oper
 
 | Focus area | Domains |
 |---|---|
-| Application and infrastructure landscape | INSTR, COLL, APM |
-| Current observability coverage state | INSTR, COLL, ALERT, APM |
-| Alerting and detection gaps (Critical/High) — recurring issues, detection approach | ALERT, APM |
+| Application and infrastructure landscape | INSTR, COLL |
+| Current observability coverage state | INSTR, COLL, ALERT |
+| Alerting and detection gaps (Critical/High) — recurring issues, detection approach | ALERT |
 | SLA/SLO requirements — technical observability | INSTR, ALERT, OPS |
-| Visibility and dashboards | DASH |
 | General operations strategy | OPS |
 | Existing governance model | GOV |
 | General observability gaps and blind spots | All in-scope domains |
@@ -49,8 +48,8 @@ The architecture must address standardised instrumentation, governance, and oper
 
 | Specialist | Role | Primary responsibility | Secondary support |
 |---|---|---|---|
-| **Specialist A** | Lead Engineer | Application infrastructure landscape, Application performance monitoring, Logs collection, assessment technical capabilities | Dashboards |
-| **Specialist B** | Systems Architect | Governance model, Operational strategy, Observability coverage, Recurring issues, Assessment approach, Reporting | APM, Infrastructure |
+| **Specialist A** | Lead Engineer | Application infrastructure landscape, Logs collection, technical capabilities | — |
+| **Specialist B** | Systems Architect | Governance model, Operational strategy, Observability coverage, Recurring issues, Assessment approach, Reporting | Infrastructure |
 
 **Specialist A** brings hands-on technical capabilities to assess the application and infrastructure landscape, evaluate log collection pipelines and APM agent coverage firsthand, and produce evidence-based technical findings.
 
@@ -62,11 +61,11 @@ Gap synthesis and target architecture drafting are shared.
 
 ## Week-by-Week Plan
 
-> **Assessment focus:** Evidence-first across all in-scope domains. Priority order: alerting gaps and detection failures first, then APM and instrumentation depth, then collection pipelines, governance, and operational practices.
+> **Assessment focus:** Evidence-first across all in-scope domains. Priority order: alerting gaps and detection failures first, then instrumentation and coverage depth, then collection pipelines, SLA/SLO gaps, governance, and operational practices.
 
 ---
 
-### Week 1 — Landscape and Coverage Discovery
+### Week 1 — Discovery & Baseline
 
 **Goal:** Establish the factual baseline. Understand all application and infrastructure tiers, what signals are being emitted, and what is reaching monitoring systems.
 
@@ -98,17 +97,15 @@ Gap synthesis and target architecture drafting are shared.
 
 ---
 
-### Week 2 — Alerting, APM, SLA/SLO, Operations
+### Week 2 — Technical & Operational Assessment
 
-**Goal:** Assess detection and response quality. Evaluate technical SLO monitoring (latency, error rates via APM), alert coverage and noise levels, and map the operations workflow end-to-end. Begin governance review.
+**Goal:** Assess detection and response quality. Evaluate technical SLO monitoring, alert coverage and noise levels, and map the operations workflow end-to-end. Begin governance review.
 
 | Day | Activity | Specialist | Output |
 |---|---|---|---|
-| 1–2 | APM: dd-java-agent coverage, service map completeness, Error Tracking, DB monitoring | A | `02-discovery/datadog/` |
 | 1–2 | SLA/SLO definitions (client to provide) → map to existing Datadog SLO monitors; identify gaps | A | `02-discovery/datadog/` |
 | 1–2 | Alert quality deep dive: coverage gaps, recurring false positives, routing, runbook linkage | B | `02-discovery/datadog/` |
 | 1–2 | Governance review: Datadog RBAC, tag strategy, monitor ownership model | B | `02-discovery/datadog/` |
-| 3 | Dashboard inventory: what exists, audience coverage, owner identification | B | `02-discovery/datadog/` |
 | 3 | Security and compliance: WAF logs, audit events, NSG flow logs — high-level only | B | `02-discovery/azure-monitor/` |
 | 4 | **Workshop #2 — Operations / On-call team** | Both | Raw notes |
 | 4 | Process workshop notes | Both | `00-context/workshops/` |
@@ -117,9 +114,7 @@ Gap synthesis and target architecture drafting are shared.
 **Must have by end of Week 2:**
 - [ ] Alert quality baseline: % with runbook link, % with notification routing, top recurring noise alerts named
 - [ ] Technical SLO gap: SLA/SLO definitions received and mapped to Datadog SLO monitors (or confirmed absent)
-- [ ] APM service map evaluated — complete, fragmented, or absent
 - [ ] Governance gaps documented: RBAC state, tag enforcement, monitor ownership
-- [ ] Dashboard inventory complete: gaps in audience coverage identified (operational vs. service vs. business)
 
 **Workshop #2 focus (Operations / On-call):**
 - Walk us through a recent incident end-to-end: alerted, investigated, resolved. What was the timeline?
@@ -131,15 +126,15 @@ Gap synthesis and target architecture drafting are shared.
 
 ---
 
-### Week 3 — Gap Analysis, Quick Wins, Target Architecture Draft
+### Week 3 — Gap Analysis & Validation
 
 **Goal:** Convert all discovery evidence into structured findings. Identify quick wins. Produce an interim findings review with the client. Start the target architecture draft.
 
 | Day | Activity | Specialist | Output |
 |---|---|---|---|
-| 1 | Gap analysis: INSTR, COLL, APM | A | `03-analysis/findings/INSTR_findings.md`, `COLL_findings.md`, `APM_findings.md` |
+| 1 | Gap analysis: INSTR, COLL | A | `03-analysis/findings/INSTR_findings.md`, `COLL_findings.md` |
 | 1 | Gap analysis: ALERT, OPS, GOV | B | `03-analysis/findings/ALERT_findings.md`, `OPS_findings.md`, `GOV_findings.md` |
-| 2 | Gap analysis: DASH, SEC (high-level), MULTI (lightweight) | B | Remaining findings files |
+| 2 | Gap analysis: SEC (high-level), MULTI (lightweight) | B | Remaining findings files |
 | 2 | Quick wins identification: Critical/High gaps fixable in < 1 week | Both | `04-recommendations/quick-wins.md` |
 | 3 | **Workshop #3 — Leadership** (if required by client) | Both | Raw notes |
 | 3 | Target observability architecture draft — current state, target state, governance model | Both | `05-deliverables/target-architecture.md` (draft) |
@@ -161,7 +156,7 @@ Gap synthesis and target architecture drafting are shared.
 
 ---
 
-### Week 4 — Target Architecture, Reporting, and Delivery
+### Week 4 — Recommendations & Roadmap
 
 **Goal:** Finalise all deliverables. Produce the target architecture document, technical report, executive summary, roadmap, and governance guidelines.
 
@@ -194,17 +189,15 @@ Gap synthesis and target architecture drafting are shared.
 When running gap-analyst, analyse in this order (most critical first):
 
 1. **ALERT** — primary pain point; highest business impact if wrong
-2. **APM** — DB crash RCA; MTTD/MTTR evidence; service map completeness
-3. **BAM** — business activity monitoring; consumer KPIs; SLA compliance tracking; business metrics in Datadog
-4. **INSTR** — SLA/SLO instrumentation; are the right signals being emitted?
-5. **COLL** — log pipeline depth; retention; coverage gaps per tier (includes AKS Container Insights and VM agent coverage)
-6. **OPS** — incident response process; runbook maturity; on-call workflow
-7. **GOV** — governance model; tag strategy; monitor ownership; RBAC
-8. **DASH** — visibility coverage; dashboard inventory
-9. **SEC** — high-level only; WAF, audit, compliance
-10. **MULTI** — lightweight; tag-based environment isolation in single Datadog tenant
+2. **BAM** — business activity monitoring; consumer KPIs; SLA compliance tracking; business metrics in Datadog
+3. **INSTR** — SLA/SLO instrumentation; are the right signals being emitted?
+4. **COLL** — log pipeline depth; retention; coverage gaps per tier (includes AKS Container Insights and VM agent coverage)
+5. **OPS** — incident response process; runbook maturity; on-call workflow
+6. **GOV** — governance model; tag strategy; monitor ownership; RBAC
+7. **SEC** — high-level only; WAF, audit, compliance
+8. **MULTI** — lightweight; tag-based environment isolation in single Datadog tenant
 
-AUTO, DD, and AKS (as a standalone domain) are out of scope. AKS infrastructure monitoring evidence feeds COLL findings. Do not write AKS-domain findings — record AKS gaps under COLL instead.
+AUTO, DD, APM, DASH, and AKS (as a standalone domain) are out of scope for Phase 1. AKS infrastructure monitoring evidence feeds COLL findings. Do not write AKS-domain findings — record AKS gaps under COLL instead.
 
 ---
 

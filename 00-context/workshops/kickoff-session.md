@@ -131,6 +131,8 @@ Based on what is known today, the following are the highest-priority areas for t
 ### Out of Scope — Phase 2 Candidates
 The following are acknowledged as important but are not included in this engagement:
 
+- Application Performance Monitoring (APM) — distributed tracing, root-cause analysis depth
+- Dashboard & Visibility Assessment — audience-specific dashboard coverage
 - Multi-region consistency analysis at depth
 - Datadog platform utilisation optimisation
 - Monitoring-as-code / CI/CD automation for observability
@@ -172,12 +174,12 @@ The following are acknowledged as important but are not included in this engagem
 
 ### Week-by-Week Approach
 
-| Week | Focus | Key activities |
+| Week | Focus | Key Activities |
 |---|---|---|
-| **Week 1** | Discovery & Landscape | Kick-off; Engineering Workshop; landscape review; access provisioning; initial evidence collection |
-| **Week 2** | Technical Analysis | Operations Workshop; deep-dive into Datadog (monitors, logs, SLOs); Azure Monitor review; AKS instrumentation; source code review |
-| **Week 3** | Gap Analysis | Structured gap analysis across all domains; findings drafting; Interim Findings Review with Client |
-| **Week 4** | Recommendations & Delivery | Target architecture; roadmap; report finalisation; Leadership Workshop (if applicable); Final Presentation |
+| **Week 1** | Discovery & Baseline | Kick-off & scope alignment · Architecture/engineering workshop · Access provisioning · Platform landscape mapping · Documentation review · Initial observability inventory |
+| **Week 2** | Technical & Operational Assessment | Observability/Datadog workshop · Operations & SLA/SLO workshop · Review logs, metrics, alerting, Azure Monitor / Log Analytics, Datadog integrations, operational processes, governance |
+| **Week 3** | Gap Analysis & Validation | Consolidate evidence · Assess coverage, detection, SLA/SLO, operations and governance gaps · Identify risks and quick wins · Interim findings review with client |
+| **Week 4** | Recommendations & Roadmap | Prioritize recommendations · Define quick wins · Provide high-level effort estimates and roadmap · Finalize report · Final findings presentation |
 
 ### Proposed Workshops Plan
 
@@ -212,14 +214,9 @@ The following are acknowledged as important but are not included in this engagem
 
 | # | Risk | Impact | Owner |
 |---|---|---|---|
-| R1 | Azure/Datadog access not provisioned by Week 1 Day 1 | Timeline compresses or slips | Client |
-| R2 | Key workshop participants unavailable or substituted with proxies | Findings based on assumptions, reduced accuracy | Client |
-| R3 | SLA/SLO definitions, architecture docs, or incident records unavailable | Gap analysis lacks contractual grounding; findings may understate severity | Client |
-| R4 | Platform scope is larger than currently known — services discovered in Week 1 that are not in this SOW | Critical gaps in undisclosed components go unassessed | Both |
-| R5 | Security/IAM policies block full read-only access to required systems | Affected domains have incomplete coverage | Client |
-| R6 | Single Datadog tenant complexity — tag-based isolation makes per-environment signal analysis difficult | Environment-specific gaps may go undetected | Client / Supplier |
-| R7 | Client data handling policy incompatible with AI-assisted analysis tooling | Methodology must be revised; timeline extends | Both |
-| R8 | Delays in Weeks 1–2 compress analysis and delivery weeks | Report and architecture quality reduced | Both |
+| R1 | Platform scope is larger than currently known — services discovered in Week 1 that are not in this SOW | Critical gaps in undisclosed components go unassessed | Both |
+| R2 | Client data handling policy incompatible with AI-assisted analysis tooling | Methodology must be revised; timeline extends | Both |
+| R3 | Delays in Weeks 1–2 compress analysis and delivery weeks | Report and architecture quality reduced | Both |
 
 ### Assumptions *(to confirm in this session)*
 

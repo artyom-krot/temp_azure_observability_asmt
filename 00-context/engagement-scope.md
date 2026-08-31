@@ -145,30 +145,7 @@ The following risks have been identified as relevant to this engagement. Both pa
 
 ---
 
-### Risk 1 — Delayed Platform Access
-**Risk:** Azure and/or Datadog access is not provisioned by Week 1, Day 1.  
-**Impact:** Technical analysis cannot begin; engagement timeline compresses or slips entirely.  
-**Owner:** Client
-
----
-
-### Risk 2 — Unavailability of Key Workshop Participants
-**Risk:** Engineers, operations staff, or leadership are unavailable or substituted with proxies who lack direct knowledge of the systems under review.  
-**Impact:** Discovery is incomplete; findings may be based on assumptions rather than confirmed evidence, reducing accuracy and actionability of recommendations.  
-**Mitigation:** Client confirms named participants with appropriate knowledge before Week 1. Workshops rescheduled with less than 48 hours notice are rebooked at the Client's cost to the timeline.  
-**Owner:** Client
-
----
-
-### Risk 3 — Missing or Incomplete Client Documentation
-**Risk:** SLA/SLO definitions, architecture diagrams, or incident post-mortems are unavailable or incomplete at the required dates.  
-**Impact:** Gap analysis in affected domains will be based on observed signals only, without contractual grounding. Findings may understate severity.  
-**Mitigation:** Client identifies documentation owner at kick-off. If definitions are not received by Week 2, Day 3, the Supplier will document the absence as a finding in its own right.  
-**Owner:** Client
-
----
-
-### Risk 4 — Incomplete Scope Identification at Engagement Start
+### Risk 1 — Incomplete Scope Identification at Engagement Start
 **Risk:** The full application and infrastructure landscape is not completely known at the time this SOW is signed. Additional services, integrations, environments, or infrastructure tiers may be discovered during Week 1 discovery and workshops that were not visible at scoping time.  
 **Impact:** The agreed assessment scope may not cover the actual platform in full. Critical observability gaps in undisclosed or unknown components may go unassessed, creating blind spots in the findings and target architecture.  
 **Mitigation:** Week 1 is explicitly structured as a landscape discovery phase to surface the complete platform tier map. Any material components identified during discovery that fall outside the agreed scope will be flagged to the Client immediately. Both parties will agree in writing whether to include them within the current engagement or defer to Phase 2. The Supplier cannot be held responsible for gaps in components not disclosed or discoverable within the agreed timeline.  
@@ -176,23 +153,7 @@ The following risks have been identified as relevant to this engagement. Both pa
 
 ---
 
-### Risk 5 — Access Restrictions Limiting Depth of Analysis
-**Risk:** Security policies, firewall rules, or internal approval processes prevent full read-only access to required systems (AKS clusters, source repositories, Log Analytics workspaces).  
-**Impact:** Coverage of affected domains is reduced; findings may be incomplete or caveated.  
-**Mitigation:** Client's security and IAM teams are engaged in Week 1 to pre-approve required access scopes. Partial access is documented and reflected in the scope of findings.  
-**Owner:** Client
-
----
-
-### Risk 6 — Single Datadog Tenant Complexity
-**Risk:** Tag-based environment isolation across multiple production environments in a single Datadog tenant makes it difficult to isolate per-environment signal quality during analysis.  
-**Impact:** Coverage gaps in specific environments may go undetected; governance findings may be underrepresented.  
-**Mitigation:** Client provides documentation of the tagging schema and environment naming conventions before Week 1 analysis begins.  
-**Owner:** Client / Supplier
-
----
-
-### Risk 7 — AI Tooling Data Handling
+### Risk 2 — AI Tooling Data Handling
 **Risk:** Client data (configuration exports, alert content, log samples) processed through AI-assisted analysis tools does not meet the Client's data classification or acceptable-use policy requirements.  
 **Impact:** Engagement methodology must be revised mid-delivery; re-analysis without AI tooling extends timeline.  
 **Mitigation:** Client confirms acceptability of AI-assisted analysis tooling before engagement commencement. No production log data or PII is fed into AI tools — only configuration exports and structural metadata.  
@@ -200,7 +161,7 @@ The following risks have been identified as relevant to this engagement. Both pa
 
 ---
 
-### Risk 8 — Timeline Compression in Weeks 3–4
+### Risk 3 — Timeline Compression in Weeks 3–4
 **Risk:** Delays accumulated in Weeks 1–2 (access, workshops, documentation) compress the analysis and delivery weeks.  
 **Impact:** Gap analysis is rushed; target architecture and report quality are reduced.  
 **Mitigation:** Supplier flags timeline risk to the Client no later than end of Week 2. If more than 3 business days are lost to Client-side delays, the delivery date extends by equivalent time.  

@@ -185,14 +185,14 @@ The following are acknowledged as important but are not included in this engagem
 
 | # | Session | Priority | Timing | Main Purpose | Expected Participants |
 |---|---|---|---|---|---|
-| 1 | Kick-off & Scope Alignment | Mandatory | Week 1 | Confirm problem statement, Phase 1 scope, priorities, deliverables, dependencies, access, RAID | Sponsor, Product/Platform leadership, Architect, Ops/SRE lead |
-| 2 | Architecture & Engineering Workshop | Mandatory | Week 1 | Validate application/infrastructure landscape, critical services, dependencies, regions, modernization context | Platform architects, Cloud/AKS engineers, App leads |
-| 3 | Observability Azure Monitor / Datadog Deep Dive | Mandatory | Week 1 | Review telemetry model, Datadog usage, logs/metrics/traces, APM, monitors, dashboards, integrations, governance | Datadog/Observability owner, SRE/Ops |
-| 4 | Operations, Incidents & SLA/SLO Workshop | Mandatory | Week 2 | Review incident lifecycle, detection gaps, alerting, MTTD/MTTR, SLA/SLO monitoring, known pain points | Operations/Support, SRE, Service owners, SLA/SLO owners |
-| 5 | Application Observability Deep Dive | Recommended | Week 2 | Review representative critical service instrumentation, tracing, dependencies, code-level observability | App engineers, Tech leads |
-| 6 | Governance & Operating Model Workshop | Recommended | Week 2–3 | Review ownership, standards, onboarding, access, lifecycle, consistency across teams | Platform/Ops leads, Architecture, Governance/Security |
-| 7 | Interim Findings Review | Mandatory | Week 3 | Validate findings, correct assumptions, agree priorities before final recommendations | Key SMEs + sponsor |
-| 8 | Final Findings & Roadmap Presentation | Mandatory | Week 4 | Present gaps, recommendations, quick wins, estimates and roadmap | Leadership + key technical stakeholders |
+| 1 | Kick-off & Scope Alignment | Mandatory | Week 1 (30 min) | Confirm problem statement, assessment scope, priorities, deliverables, dependencies, access, RAID | Sponsor, Product/Platform leadership, Architect, Ops/SRE lead |
+| 2 | Architecture & Engineering Workshop | Mandatory | Week 1 (~120 min) | Validate application/infrastructure landscape, critical services, dependencies, regions, modernization context | Platform architects, Cloud/AKS engineers, App leads |
+| 3 | Observability Azure Monitor / Datadog Deep Dive | Mandatory | Week 1 (~90 min) | Review telemetry model, Datadog usage, logs/metrics/traces, APM, monitors, dashboards, integrations, governance | Datadog/Observability owner, SRE/Ops |
+| 4 | Operations, Incidents & SLA/SLO Workshop | Mandatory | Week 2 (~60 min) | Review incident lifecycle, detection gaps, alerting, MTTD/MTTR, SLA/SLO monitoring, known pain points | Operations/Support, SRE, Service owners, SLA/SLO owners |
+| 5 | Weekly status calls | Recommended | Weeks 2–3 (30 min) | Report status call | Sponsor, Product/Platform leadership, Ops/SRE leads |
+| 6 | Governance & Operating Model Workshop | Recommended | Week 2–3 (~120 min) | Review ownership, standards, onboarding, access, lifecycle, consistency across teams | Platform/Ops leads, Architecture, Governance/Security |
+| 7 | Interim Findings Review | Mandatory | Week 3–4 (~60 min) | Validate findings, correct assumptions, agree priorities before final recommendations | Key SMEs + sponsor |
+| 8 | Final Findings & Roadmap Presentation | Mandatory | Week 4 (~60 min) | Present gaps, recommendations, quick wins, estimates and roadmap | Leadership + key technical stakeholders |
 
 ### Toolset Used in This Assessment
 

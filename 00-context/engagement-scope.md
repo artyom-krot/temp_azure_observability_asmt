@@ -25,19 +25,13 @@ Review of log collection pipelines, metric emission coverage, and tracing instru
 ### 3. Alerting and Detection Gap Analysis
 Structured review of the alert inventory against Critical and High-severity failure modes, including an assessment of alert quality indicators and recurring incident patterns. This activity will document specific gaps where consumer-reported incidents would be detected before internal monitoring — directly addressing the reactive detection posture identified as the core problem.
 
-### 4. Application Performance Monitoring (APM) Review
-Evaluation of whether current APM depth supports effective root cause analysis. This includes assessing trace coverage, service dependency mapping, and whether the tooling in place gives engineering teams the diagnostic capability needed to resolve production issues quickly.
-
-### 5. SLA/SLO Observability Review
+### 4. SLA/SLO Observability Review
 Identification and mapping of the Client's contractual SLA commitments to existing SLO monitors. This activity will surface gaps where SLA obligations are not represented as measurable, automated observability signals — creating risk that breaches go undetected until reported externally.
 
-### 6. Dashboard and Visibility Assessment
-Inventory and evaluation of existing monitoring dashboards against the needs of distinct audiences: engineering, operations, and leadership. The assessment will identify whether the right information is visible to the right people at the right time, and where visibility gaps increase response time or reduce situational awareness.
-
-### 7. Operational Processes Review
+### 5. Operational Processes Review
 Assessment of the end-to-end incident detection and response workflow, covering alert routing, on-call tooling, runbook availability and quality, and escalation paths. This activity will evaluate the Client's MTTD (Mean Time to Detect) and MTTR (Mean Time to Recover) posture using documented incidents as evidence.
 
-### 8. Governance Model Review
+### 6. Governance Model Review
 Assessment of current-state observability governance maturity. This covers how monitoring standards are defined, who owns alerting and instrumentation decisions, how access to monitoring data is controlled, and whether governance practices are consistent across teams and environments.
 
 ---
@@ -60,6 +54,8 @@ The following areas are acknowledged as important but are not included in this e
 
 | Deferred area | Reason for deferral |
 |---|---|
+| Application Performance Monitoring (APM) — distributed tracing, dependency visibility, root-cause analysis capabilities | Deferred to maintain Phase 1 focus on detection and coverage gaps |
+| Dashboard & Visibility Assessment — audience-specific dashboards (engineering, operations, leadership) | Deferred; depends on coverage and alerting gaps being addressed first |
 | Monitoring-as-code and CI/CD integration for observability | Requires Phase 1 baseline to be established first |
 | Multi-region consistency and coverage | Dependent on Phase 1 findings; scope would expand engagement significantly |
 | Datadog platform utilisation optimisation | Tactical improvement; best actioned after strategic gaps are addressed |

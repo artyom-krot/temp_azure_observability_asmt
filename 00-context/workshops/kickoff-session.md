@@ -126,8 +126,7 @@ Based on what is known today, the following are the highest-priority areas for t
 1. **Alerting and detection gaps** — the reactive detection posture is the confirmed, active problem
 2. **Instrumentation coverage** — determining which tiers are dark and why
 3. **SLA/SLO observability** — whether contractual obligations have any automated backing
-4. **APM depth** — whether root cause analysis is currently possible when incidents occur
-5. **Governance** — whether any standards exist and are being followed
+4. **Governance** — whether any standards exist and are being followed
 
 ### Out of Scope — Phase 2 Candidates
 The following are acknowledged as important but are not included in this engagement:
@@ -176,7 +175,7 @@ The following are acknowledged as important but are not included in this engagem
 | Week | Focus | Key activities |
 |---|---|---|
 | **Week 1** | Discovery & Landscape | Kick-off; Engineering Workshop; landscape review; access provisioning; initial evidence collection |
-| **Week 2** | Technical Analysis | Operations Workshop; deep-dive into Datadog (monitors, APM, logs, SLOs); Azure Monitor review; AKS instrumentation; source code review |
+| **Week 2** | Technical Analysis | Operations Workshop; deep-dive into Datadog (monitors, logs, SLOs); Azure Monitor review; AKS instrumentation; source code review |
 | **Week 3** | Gap Analysis | Structured gap analysis across all domains; findings drafting; Interim Findings Review with Client |
 | **Week 4** | Recommendations & Delivery | Target architecture; roadmap; report finalisation; Leadership Workshop (if applicable); Final Presentation |
 

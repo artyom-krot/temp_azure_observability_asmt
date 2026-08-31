@@ -60,14 +60,12 @@ The output must answer: "Here is what good observability looks like for your pla
 
 | # | Activity | Primary domains |
 |---|---|---|
-| 1 | **Application & Infrastructure Landscape Review** — identify all in-scope tiers, services, and components | INSTR, COLL, APM |
-| 2 | **Observability Coverage Evaluation** — log pipelines, metric emission, tracing across all tiers; identify dark tiers and instrumentation blind spots | INSTR, COLL, APM |
-| 3 | **Alerting & Detection Gap Analysis** — alert inventory coverage vs. Critical/High failure modes; alert quality; recurring incidents; gaps where consumers detect before monitoring does | ALERT, APM |
-| 4 | **APM Review** — evaluate whether current APM depth supports effective root cause analysis | APM |
-| 5 | **SLA/SLO Observability Review** — map contractual SLA commitments to existing SLO monitors; identify gaps where SLA obligations lack automated observability signals | INSTR, ALERT, OPS |
-| 6 | **Dashboard & Visibility Assessment** — inventory and evaluate dashboards against audience needs (engineering, operations, leadership) | DASH |
-| 7 | **Operational Processes Review** — assess end-to-end incident detection and response: alert routing, on-call tooling, runbook quality, escalation paths; evaluate MTTD/MTTR posture | OPS |
-| 8 | **Governance Model Review** — assess current-state governance maturity across tagging, ownership, access control, and standards adoption | GOV |
+| 1 | **Application & Infrastructure Landscape Review** — identify all in-scope tiers, services, and components | INSTR, COLL |
+| 2 | **Observability Coverage Evaluation** — log pipelines, metric emission, tracing across all tiers; identify dark tiers and instrumentation blind spots | INSTR, COLL |
+| 3 | **Alerting & Detection Gap Analysis** — alert inventory coverage vs. Critical/High failure modes; alert quality; recurring incidents; gaps where consumers detect before monitoring does | ALERT |
+| 4 | **SLA/SLO Observability Review** — map contractual SLA commitments to existing SLO monitors; identify gaps where SLA obligations lack automated observability signals | INSTR, ALERT, OPS |
+| 5 | **Operational Processes Review** — assess end-to-end incident detection and response: alert routing, on-call tooling, runbook quality, escalation paths; evaluate MTTD/MTTR posture | OPS |
+| 6 | **Governance Model Review** — assess current-state governance maturity across tagging, ownership, access control, and standards adoption | GOV |
 
 ### Out of Scope — Deferred to Phase 2
 
@@ -75,6 +73,8 @@ These are acknowledged as important but not covered in this engagement. They sho
 
 | Deferred topic | Domain |
 |---|---|
+| Application Performance Monitoring (APM) — distributed tracing, dependency visibility, root-cause analysis capabilities | `APM` |
+| Dashboard & Visibility Assessment — audience-specific dashboard coverage (engineering, operations, leadership) | `DASH` |
 | Datadog capability utilisation optimisation | `DD` |
 | Monitoring-as-code / CI/CD automation | `AUTO` |
 | Unified monitoring architecture design | `MULTI` |
@@ -117,10 +117,10 @@ All findings reference one of the 12 standard domains. Scope column indicates de
 | 1 | Instrumentation | `INSTR` | **Full** |
 | 2 | Collection & Pipelines | `COLL` | **Full** |
 | 3 | Alerting | `ALERT` | **Full** |
-| 4 | Dashboards & Visibility | `DASH` | **Full** |
+| 4 | Dashboards & Visibility | `DASH` | **Deferred to Phase 2** |
 | 5 | Business Activity Monitoring (BAM). Is the application producing the correct business outcomes? | `BAM` | Lightweight |
 | 6 | Multi-Environment Consistency | `MULTI` | Lightweight |
-| 7 | APM (Application Performance Monitoring) & Distributed Tracing | `APM` | **Full** |
+| 7 | APM (Application Performance Monitoring) & Distributed Tracing | `APM` | **Deferred to Phase 2** |
 | 8 | Security Observability | `SEC` | High-level only |
 | 9 | Operational Processes | `OPS` | **Full** |
 | 10 | Governance | `GOV` | **Full** (current state; not standardisation) |

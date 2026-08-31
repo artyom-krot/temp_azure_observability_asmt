@@ -101,22 +101,22 @@ A mature, production-grade observability practice where:
 
 | Layer | In scope | Notes |
 |---|---|---|
-| Azure infrastructure (AKS, VMs, SQL, Service Bus, Blob, App Gateway, Key Vault) | Yes | All active regions |
-| Apache web tier | Yes | |
-| CDN edge layer | Yes | Provider TBC |
-| Datadog monitoring platform | Yes | Monitors, dashboards, SLOs, APM, log pipelines |
+| Azure infrastructure (AKS, VMs, SQL, Service Bus, Blob, App Gateway, Key Vault) | Yes | All active regions — assumed; confirm full inventory at kick-off |
+| Apache web tier | Yes | Assumed present; confirm role and coverage at Engineering Workshop |
+| CDN edge layer | TBC | Provider unknown (Azure CDN or Cloudflare) — confirm at kick-off |
+| Datadog monitoring platform | Yes | Monitors, SLOs, log pipelines, integrations, governance; dashboards and APM deferred to Phase 2 |
 | Azure Monitor + Log Analytics | Yes | Diagnostic settings, metric coverage |
-| Application source code (instrumentation review) | Yes | Read-only, selected repositories |
-| CI/CD pipelines (observability-as-code review) | Yes | View-only |
+| Application source code (instrumentation review) | TBC | Read-only access; depends on access provisioned by client — confirm at kick-off |
+| CI/CD pipelines (view-only, evidence review) | Yes | View-only review of pipeline definitions only; observability automation is Phase 2 |
 | Non-production environment (runtime inspection) | Yes | Dev or staging only |
-| DE environment (in progress) | TBC | May be too early-stage for inclusion |
+| DE environment (in progress) | TBC | May be too early-stage for inclusion — confirm at kick-off |
 | CA environment (planned) | No | Not yet active |
 | Business activity monitoring / consumer KPIs | No | Deferred to Phase 2 |
 
 **Active regions in scope:** US, UK, AU (DE to confirm)
 
 ### People and Capacity
-- **Supplier:** 2 specialists — Lead Engineer (instrumentation, APM, log pipelines, AKS) and Systems Architect (alerting, governance, operations, target architecture)
+- **Supplier:** 2 specialists — Lead Engineer (instrumentation, log pipelines, AKS, technical capabilities) and Systems Architect (alerting, governance, operations, target architecture)
 - **Timeline:** 4 weeks of active delivery
 - This scope is **calibrated to 2 people over 4 weeks** — not all domains can receive equal depth; priorities are agreed below
 

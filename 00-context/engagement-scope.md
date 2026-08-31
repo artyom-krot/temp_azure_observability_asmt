@@ -110,13 +110,13 @@ The Client must provide a list of in-scope subscription IDs at kick-off. Access 
 | Datadog Viewer role | UI access |
 
 #### Source Code Repositories
-Read-only access to application service repositories — required to verify instrumentation configuration (agent setup, logging framework, custom metric emission).
+Read-only access to application service repositories — **TBC; confirm at kick-off**. Required to verify instrumentation configuration (agent setup, logging framework, custom metric emission) if access can be provisioned.
 
 #### Application Environment
 Read-only access to a non-production (dev or staging) environment for runtime inspection of agent configuration and log output.
 
 #### CI/CD Pipelines
-View access to CI/CD pipeline definitions — required to assess whether observability configuration is managed as code.
+View access to CI/CD pipeline definitions — required for evidence review of current instrumentation practices. Note: observability automation and monitoring-as-code are Phase 2 scope; this access is for passive review only.
 
 ---
 

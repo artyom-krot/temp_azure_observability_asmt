@@ -8,10 +8,11 @@
 
 ## Strategic Framing
 
-This assessment goes beyond reviewing tool configurations.
-The primary outcome is a **target observability architecture** — a clear picture of what good looks like for this platform, how far the current state is from that target, and a prioritised, realistic path to close the gap.
+This is primarily a **technical assessment** focused on surfacing reactive observability failures that are actively harming the platform today.
 
-The architecture must address standardised instrumentation, governance, and operational practices that will scale as the platform continues its cloud-native transition.
+The client's primary pain point (confirmed at kickoff): the team is drowning in alerts — too many, many not actionable, no clear ownership. Alert quality and coverage gaps are the #1 priority. Observability blind spots and SLA/SLO gaps follow closely. Operations and governance are acknowledged gaps but the client already knows them — they are not the focus.
+
+The primary deliverable is a **target observability architecture** — but the client cares most about concrete findings, quick wins, and a realistic path to reduce noise and improve detection. The architecture is the framing vehicle, not the centrepiece.
 
 ---
 
@@ -23,12 +24,11 @@ The architecture must address standardised instrumentation, governance, and oper
 |---|---|
 | Application and infrastructure landscape | INSTR, COLL |
 | Current observability coverage state | INSTR, COLL, ALERT |
-| Alerting and detection gaps (Critical/High) — recurring issues, detection approach | ALERT |
+| Alerting and detection gaps (Critical/High) — recurring issues, alert quality, noise reduction | ALERT |
 | SLA/SLO requirements — technical observability | INSTR, ALERT, OPS |
 | General operations strategy | OPS |
 | Existing governance model | GOV |
 | General observability gaps and blind spots | All in-scope domains |
-| Security and compliance (high-level) | SEC |
 
 ### Out of Scope — Phase 2
 
@@ -104,9 +104,8 @@ Gap synthesis and target architecture drafting are shared.
 | Day | Activity | Specialist | Output |
 |---|---|---|---|
 | 1–2 | SLA/SLO definitions (client to provide) → map to existing Datadog SLO monitors; identify gaps | A | `02-discovery/datadog/` |
-| 1–2 | Alert quality deep dive: coverage gaps, recurring false positives, routing, runbook linkage | B | `02-discovery/datadog/` |
+| 1–2 | Alert quality deep dive: coverage gaps, noise analysis, recurring false positives, routing, runbook linkage | B | `02-discovery/datadog/` |
 | 1–2 | Governance review: Datadog RBAC, tag strategy, monitor ownership model | B | `02-discovery/datadog/` |
-| 3 | Security and compliance: WAF logs, audit events, NSG flow logs — high-level only | B | `02-discovery/azure-monitor/` |
 | 4 | **Workshop #2 — Operations / On-call team** | Both | Raw notes |
 | 4 | Process workshop notes | Both | `00-context/workshops/` |
 | 5 | Consolidate all discovery; update open questions | Both | Updated discovery files |
@@ -134,7 +133,7 @@ Gap synthesis and target architecture drafting are shared.
 |---|---|---|---|
 | 1 | Gap analysis: INSTR, COLL | A | `03-analysis/findings/INSTR_findings.md`, `COLL_findings.md` |
 | 1 | Gap analysis: ALERT, OPS, GOV | B | `03-analysis/findings/ALERT_findings.md`, `OPS_findings.md`, `GOV_findings.md` |
-| 2 | Gap analysis: SEC (high-level), MULTI (lightweight) | B | Remaining findings files |
+| 2 | Gap analysis: MULTI (lightweight) | B | Remaining findings files |
 | 2 | Quick wins identification: Critical/High gaps fixable in < 1 week | Both | `04-recommendations/quick-wins.md` |
 | 3 | **Workshop #3 — Leadership** (if required by client) | Both | Raw notes |
 | 3 | Target observability architecture draft — current state, target state, governance model | Both | `05-deliverables/target-architecture.md` (draft) |
@@ -186,18 +185,16 @@ Gap synthesis and target architecture drafting are shared.
 
 ## Domain Priority Order for Gap Analysis
 
-When running gap-analyst, analyse in this order (most critical first):
+When running gap-analyst, analyse in this order (most critical first — confirmed at kickoff):
 
-1. **ALERT** — primary pain point; highest business impact if wrong
-2. **BAM** — business activity monitoring; consumer KPIs; SLA compliance tracking; business metrics in Datadog
-3. **INSTR** — SLA/SLO instrumentation; are the right signals being emitted?
-4. **COLL** — log pipeline depth; retention; coverage gaps per tier (includes AKS Container Insights and VM agent coverage)
-5. **OPS** — incident response process; runbook maturity; on-call workflow
-6. **GOV** — governance model; tag strategy; monitor ownership; RBAC
-7. **SEC** — high-level only; WAF, audit, compliance
-8. **MULTI** — lightweight; tag-based environment isolation in single Datadog tenant
+1. **ALERT** — #1 client pain point; alert fatigue, noise, quality, coverage gaps
+2. **INSTR** — observability coverage; are the right signals being emitted across all tiers?
+3. **COLL** — log pipeline depth; retention; coverage gaps per tier (includes AKS Container Insights and VM agent coverage)
+4. **OPS** — SLA/SLO observability; incident response process; runbook maturity; on-call workflow
+5. **GOV** — governance model; tag strategy; monitor ownership; RBAC
+6. **MULTI** — lightweight; tag-based environment isolation in single Datadog tenant
 
-AUTO, DD, APM, DASH, and AKS (as a standalone domain) are out of scope for Phase 1. AKS infrastructure monitoring evidence feeds COLL findings. Do not write AKS-domain findings — record AKS gaps under COLL instead.
+AUTO, DD, APM, DASH, BAM, SEC, and AKS (as a standalone domain) are out of scope for Phase 1. AKS infrastructure monitoring evidence feeds COLL findings. Do not write AKS-domain findings — record AKS gaps under COLL instead.
 
 ---
 
@@ -212,10 +209,16 @@ AUTO, DD, APM, DASH, and AKS (as a standalone domain) are out of scope for Phase
 
 ---
 
-## Key Open Questions (from introductory meeting)
+## Key Open Questions
 
+**Confirmed at kickoff (2026-09-08):**
+- Alert fatigue is a confirmed #1 pain point — too many alerts, team can't manage them
+- Scope confirmed: 6 domains as per image (App Landscape, Observability Coverage, Alerting, SLA/SLO, Ops, Governance)
+- Security observability is out of scope for this engagement
+
+**Still open — to resolve in Engineering workshop:**
 1. DB crash: Was it detected by monitoring or by consumers? MTTD?
-2. What makes alerting painful — noise, routing, missing coverage?
+2. What makes alerting painful specifically — noise volume, routing failures, missing coverage, or all three?
 3. Is there a log archive beyond the 30-day Datadog online index?
 4. How are consumer environments tagged/isolated in the single Datadog tenant?
 5. CDN provider — Azure CDN, Cloudflare, other?

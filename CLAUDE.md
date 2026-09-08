@@ -14,6 +14,9 @@ align with the scope, standards, and format defined here.
 - **Teams:** Multiple product teams sharing a single platform, each owning specific services or integrations
 - **Core problem:** Observability is **reactive** — consumers detect failures before monitoring does
 - **Confirmed incident:** Recent database crash caused a consumer-facing outage — evidence of reactive detection posture
+- **Confirmed pain point (kickoff):** Alert fatigue is a top client concern — team receives too many alerts to manage; many are not actionable. Alert quality and noise reduction are explicitly the #1 priority.
+- **Client priority order (confirmed at kickoff):** (1) Alerting configuration & coverage, (2) Observability coverage & blind spots, (3) SLA/SLO observability. Operations and governance are acknowledged gaps but lower urgency — client already knows those weaknesses.
+- **Engagement character:** Primarily a technical assessment to surface and fix reactive observability failures. Target architecture is the framing vehicle, but the client values concrete findings and quick wins over architectural vision.
 - **Monitoring history:** Migrated from Splunk to Datadog ~2 years ago
 
 ### Infrastructure Landscape
@@ -82,6 +85,7 @@ These are acknowledged as important but not covered in this engagement. They sho
 | Apply at scale / Migration strategy unified observability | N/A |
 | Multi-region coverage | `MULTI` |
 | Business activity monitoring — consumer KPIs, SLA compliance, business metrics | `BAM` |
+| Security observability — WAF logs, audit events, NSG flow logs, compliance | `SEC` |
 
 ### Workshop Plan
 
@@ -116,14 +120,14 @@ All findings reference one of the 12 standard domains. Scope column indicates de
 |---|--------|------|-------|
 | 1 | Instrumentation | `INSTR` | **Full** |
 | 2 | Collection & Pipelines | `COLL` | **Full** |
-| 3 | Alerting | `ALERT` | **Full** |
+| 3 | Alerting | `ALERT` | **Full — #1 client priority** |
 | 4 | Dashboards & Visibility | `DASH` | **Deferred to Phase 2** |
-| 5 | Business Activity Monitoring (BAM). Is the application producing the correct business outcomes? | `BAM` | Lightweight |
+| 5 | Business Activity Monitoring (BAM) | `BAM` | **Out of scope** |
 | 6 | Multi-Environment Consistency | `MULTI` | Lightweight |
 | 7 | APM (Application Performance Monitoring) & Distributed Tracing | `APM` | **Deferred to Phase 2** |
-| 8 | Security Observability | `SEC` | High-level only |
-| 9 | Operational Processes | `OPS` | **Full** |
-| 10 | Governance | `GOV` | **Full** (current state; not standardisation) |
+| 8 | Security Observability | `SEC` | **Out of scope** |
+| 9 | Operational Processes | `OPS` | **Full** (lower client priority — gaps already known) |
+| 10 | Governance | `GOV` | **Full** (current state; not standardisation; lower client priority) |
 | 11 | Observability Automation & CI/CD | `AUTO` | **Out of scope** |
 | 12 | Datadog Platform Utilization | `DD` | **Out of scope** |
 

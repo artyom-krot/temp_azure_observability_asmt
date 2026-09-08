@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '\n[doc-hygiene check] Did this session surface anything that should update: CLAUDE.md, HOW-TO-USE.md, .claude/agents/*.md, or 01-framework/? Claude should have handled it automatically — verify if the session was substantive.' >&2"
+          }
+        ]
+      }
+    ]
+  }
+}

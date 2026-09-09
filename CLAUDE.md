@@ -11,6 +11,7 @@ align with the scope, standards, and format defined here.
 - **Client type:** Large enterprise ISV
 - **Product:** Custom Java application, deployed as a **dedicated instance per consumer** (enterprise companies)
 - **Consumers:** Global enterprise clients across US, UK, AU, DE (WIP), CA (planned)
+- **Terminology note:** The client refers to each dedicated deployment as a **Business Landing Zone (BLZ)**. "BLZ", "consumer environment", and "dedicated instance" are interchangeable in this engagement. Use "BLZ" when writing to client-facing documents.
 - **Teams:** Multiple product teams sharing a single platform, each owning specific services or integrations
 - **Core problem:** Observability is **reactive** — consumers detect failures before monitoring does
 - **Confirmed incident:** Recent database crash caused a consumer-facing outage — evidence of reactive detection posture
@@ -43,6 +44,13 @@ This makes tag governance, RBAC, and UST compliance critical architectural conce
 ### Scale
 - **12 production environments** (primary + DR per region)
 - **Regions active:** US, UK, AU — DE in progress, CA planned
+
+### Assessment Scope Selection Approach
+Rather than assessing all 12 environments equally, the assessment uses a **primary BLZ + secondary comparison** model:
+- **Primary BLZ:** One representative environment selected for deep-dive analysis. Selection criteria: highest business criticality, most observability pain, most representative stack (AKS + VM mix), evidence availability, SME availability.
+- **Secondary BLZ:** One additional environment used as a comparison sample to surface configuration drift and generalise findings.
+- Findings from the primary scope are assessed for platform-wide applicability. Where generalisation is unsafe (e.g., region-specific config), this must be explicitly noted.
+- The primary BLZ selection is a **mandatory kick-off decision** — do not proceed with deep analysis until it is confirmed.
 
 ### Engagement Team
 - **2 specialists** on this assessment. Scope must be focused accordingly — not all 12 domains can receive equal depth in 4 weeks.
@@ -123,7 +131,7 @@ All findings reference one of the 12 standard domains. Scope column indicates de
 | 3 | Alerting | `ALERT` | **Full — #1 client priority** |
 | 4 | Dashboards & Visibility | `DASH` | **Deferred to Phase 2** |
 | 5 | Business Activity Monitoring (BAM) | `BAM` | **Out of scope** |
-| 6 | Multi-Environment Consistency | `MULTI` | Lightweight |
+| 6 | Multi-Environment Consistency | `MULTI` | Lightweight — focus on primary vs. secondary BLZ comparison and DR environment monitoring parity |
 | 7 | APM (Application Performance Monitoring) & Distributed Tracing | `APM` | **Deferred to Phase 2** |
 | 8 | Security Observability | `SEC` | **Out of scope** |
 | 9 | Operational Processes | `OPS` | **Full** (lower client priority — gaps already known) |
@@ -204,10 +212,13 @@ Format:
 2. **When analyzing evidence:** Always compare against the standards listed above. Note which standard is violated.
 3. **When writing findings:** Use the finding format template. Never write a finding without evidence.
 4. **When writing recommendations:** Be specific — name the Azure resource, Datadog feature, or config change. Avoid generic advice.
-5. **Multi-environment sensitivity:** Always ask — "does this apply to all 12 environments or just some?" Configuration drift between envs is a primary finding type.
+5. **Multi-environment sensitivity:** Always ask — "does this apply to all 12 environments or just some?" Specifically check whether DR environments are monitored to the same level as primary — this is a common and often-overlooked gap. Configuration drift between envs is a primary finding type.
 6. **CI/CD angle:** For every technical gap found, consider whether it would be prevented by automation (domain 11). If yes, note it.
 7. **Business metrics gap:** When metrics coverage is discussed, explicitly check whether business-level metrics exist (e.g., per-consumer transaction rates, SLA tracking). This is typically missing and is a high-value finding.
 8. **Datadog license utilization:** When reviewing Datadog, always map which modules are licensed vs. which are actively configured. Gap between the two is a finding.
+9. **Meta-monitoring (COLL):** When reviewing collection pipelines, always check whether telemetry health itself is monitored — alerts for missing telemetry, disconnected agents, broken integrations, or stopped log pipelines. Absence of meta-monitoring means collection failures are silent.
+10. **Compliance-driven retention:** Log retention gaps must be evaluated in the context of the region. DE and CA operate under stricter regulatory regimes (GDPR, PIPEDA) — the confirmed 30-day retention gap may be a compliance risk, not just a best-practice gap, in those environments. Always note regulatory context when writing retention findings.
+11. **Alert quality dimensions (ALERT):** When reviewing monitors, check all quality dimensions — not just coverage. Specifically: threshold review process, alert grouping (per-environment duplication vs. multi-alert), maintenance window handling, flapping suppression, deduplication of correlated symptoms, and whether warning/critical states are operationally differentiated.
 9. **Documentation hygiene (proactive, no prompt needed):** After any analysis, evidence ingestion, workshop processing, or structural change to the engagement — automatically check whether any of the following need updating and update them without waiting to be asked:
    - `CLAUDE.md` — new client context, scope changes, new standards, revised domain definitions
    - `HOW-TO-USE.md` — new workflow steps, new agents, new example prompts, corrected instructions
